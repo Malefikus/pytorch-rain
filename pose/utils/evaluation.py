@@ -8,7 +8,7 @@ from .misc import *
 
 __all__ = ['accuracy', 'AverageMeter']
 
-def accuracy(output, target, thr=100):
+def accuracy(output, target, thr=150):
     acc = 0
     output = np.array(output)
     target = np.array(target)
