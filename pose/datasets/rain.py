@@ -18,7 +18,7 @@ class Rain(data.Dataset):
         self.rain_data = rain['data']
         self.rain_train = self.rain_data[0:61]
         self.rain_valid = self.rain_data[56:66]
-        self.consec_idx = _make_idx(train)
+        self.consec_idx = self._make_idx(train)
 
     def _make_idx(self, isTrain):
         consec_idx = []
