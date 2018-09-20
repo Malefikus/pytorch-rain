@@ -144,7 +144,7 @@ def train(train_loader, model, criterion, optimizer):
         acc = accuracy(output.detach(), target.cpu())
 
         # measure accuracy and record loss
-        losses.update(loss.data[0], inputs.size(0))
+        losses.update(loss.item(), inputs.size(0))
         acces.update(acc, inputs.size(0))
 
         # compute gradient and do SGD step
@@ -209,7 +209,7 @@ def validate(val_loader, model, criterion):
         predictions[i] = output.detach()
 
         # measure accuracy and record loss
-        losses.update(loss.data[0], inputs.size(0))
+        losses.update(loss.item(), inputs.size(0))
         acces.update(acc, inputs.size(0))
 
         # measure elapsed time
@@ -251,14 +251,12 @@ if __name__ == '__main__':
                         help='train batchsize')
     parser.add_argument('--test-batch', default=1, type=int, metavar='N',
                         help='test batchsize')
-    parser.add_argument('--lr', '--learning-rate', default=2.5e-4, type=float,
+    parser.add_argument('--lr', '--learning-rate', default=2.5e-5, type=float,
                         metavar='LR', help='initial learning rate')
     parser.add_argument('--momentum', default=0, type=float, metavar='M',
                         help='momentum')
     parser.add_argument('--weight-decay', '--wd', default=0, type=float,
                         metavar='W', help='weight decay (default: 0)')
-    parser.add_argument('--schedule', type=int, nargs='+', default=[60, 90],
-                        help='Decrease learning rate at these epochs.')
     parser.add_argument('--gamma', type=float, default=0.1,
                         help='LR is multiplied by gamma on schedule.')
     # Miscs
