@@ -10,12 +10,12 @@ class FCNet(nn.Module):
         self.inplanes = 1
         self.planes = 3
 
-        self.bn1 = nn.BatchNorm2d(inplanes)
-        self.conv1 = nn.Conv2d(inplanes, planes, kernel_size=1, bias=False)
-        self.bn2 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, padding=1, bias=False)
-        self.bn3 = nn.BatchNorm2d(planes)
-        self.conv3 = nn.Conv2d(planes, inplanes, kernel_size=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(self.inplanes)
+        self.conv1 = nn.Conv2d(self.inplanes, self.planes, kernel_size=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(self.planes)
+        self.conv2 = nn.Conv2d(self.planes, self.planes, kernel_size=3, padding=1, bias=False)
+        self.bn3 = nn.BatchNorm2d(self.planes)
+        self.conv3 = nn.Conv2d(self.planes, self.inplanes, kernel_size=1, bias=False)
         self.relu = nn.ReLU(inplace=True)
 
         self.avg_pool = nn.AvgPool2d(3)
