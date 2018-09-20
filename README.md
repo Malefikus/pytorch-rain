@@ -1,5 +1,5 @@
 # pytorch-rain
-Simple convnet + fcnet model to predict one year's monthly rainfalls from the first 5 years.
+Simple convnet + fcnet model to predict one year's monthly rainfalls from the preceding 5 years.
 
 # Prerequisites
 Python 3.x, Pytorch 0.4.0+, numpy and scipy.
