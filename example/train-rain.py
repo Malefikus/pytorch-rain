@@ -33,7 +33,7 @@ def main(args):
 
     # create model
     print("==> creating model '{}' ...".format(args.arch))
-    model = models.__dict__[args.arch]
+    model = models.__dict__[args.arch]()
 
     model = torch.nn.DataParallel(model).cuda()
 
