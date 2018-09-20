@@ -45,4 +45,4 @@ class Rain(data.Dataset):
         return inp, target
 
     def __len__(self):
-        len(self.consec_idx)
+        return len(self.consec_idx)
