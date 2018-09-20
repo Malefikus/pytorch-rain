@@ -12,7 +12,7 @@ import torchvision.datasets as datasets
 
 from pose import Bar
 from pose.utils.logger import Logger, savefig
-from pose.utils.evaluation import accuracy, AverageMeter, final_preds
+from pose.utils.evaluation import accuracy, AverageMeter
 from pose.utils.misc import save_checkpoint, save_pred, adjust_learning_rate
 from pose.utils.osutils import mkdir_p, isfile, isdir, join
 import pose.models as models
