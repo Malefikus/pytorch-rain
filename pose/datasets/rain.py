@@ -14,7 +14,7 @@ class Rain(data.Dataset):
         self.is_train = train           # training set or test set
 
         # create train/val split
-        rain = io.loadmat('data/h36m/annot/years66.mat')
+        rain = io.loadmat('data/rain/years66.mat')
         self.rain_data = rain['data']
         self.rain_train = self.rain_data[0:61]
         self.rain_valid = self.rain_data[56:66]
