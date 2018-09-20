@@ -89,11 +89,6 @@ def main(args):
         lr = adjust_learning_rate(optimizer, epoch, lr, args.schedule, args.gamma)
         print('\nEpoch: %d | LR: %.8f' % (epoch + 1, lr))
 
-        # decay sigma
-        if args.sigma_decay > 0:
-            train_loader.dataset.sigma *=  args.sigma_decay
-            val_loader.dataset.sigma *=  args.sigma_decay
-
         # train for one epoch
         train_loss, train_acc = train(train_loader, model, criterion, optimizer)
 
