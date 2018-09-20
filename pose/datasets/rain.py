@@ -24,11 +24,11 @@ class Rain(data.Dataset):
         consec_idx = []
         if isTrain:
             for i in range(len(self.rain_train)-6):
-                sample_idx = np.linspace(i, i+6, 7)
+                sample_idx = np.linspace(i, i+6, 7, dtype=int)
                 consec_idx.append(sample_idx)
         else:
             for i in range(len(self.rain_valid)-6):
-                sample_idx = np.linspace(i, i+6, 7)
+                sample_idx = np.linspace(i, i+6, 7, dtype=int)
                 consec_idx.append(sample_idx)
         return consec_idx
 
