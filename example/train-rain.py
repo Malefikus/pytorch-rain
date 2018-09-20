@@ -128,19 +128,24 @@ def train(train_loader, model, criterion, optimizer):
     for i, (inputs, target) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
-        target = target.cuda(async=True)
+        # target = target.cuda(async=True)
         input_var = torch.autograd.Variable(inputs.cuda())
+        input_var = input_var.unsqueeze(0)
+        input_var = input_var.type(torch.FloatTensor)
         target_var = torch.autograd.Variable(target)
+        target_var = target_var.type(torch.FloatTensor)
+        target_var = target_var.cuda()
 
         # compute output
         output = model(input_var)
+        output = output.unsqueeze(0)
 
         loss = criterion(output, target_var)
-        acc = accuracy(output.detach, target.cpu())
+        acc = accuracy(output.detach(), target.cpu())
 
         # measure accuracy and record loss
         losses.update(loss.data[0], inputs.size(0))
-        acces.update(acc[0], inputs.size(0))
+        acces.update(acc, inputs.size(0))
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -186,14 +191,18 @@ def validate(val_loader, model, criterion):
         # measure data loading time
         data_time.update(time.time() - end)
 
-        target = target.cuda(async=True)
-        input_var = torch.autograd.Variable(inputs.cuda(), volatile=True)
-        target_var = torch.autograd.Variable(target, volatile=True)
+        input_var = torch.autograd.Variable(inputs.cuda())
+        input_var = input_var.unsqueeze(0)
+        input_var = input_var.type(torch.FloatTensor)
+        target_var = torch.autograd.Variable(target)
+        target_var = target_var.type(torch.FloatTensor)
+        target_var = target_var.cuda()
 
         # compute output
         output = model(input_var)
+        output = output.unsqueeze(0)
 
-        loss += criterion(output, target_var)
+        loss = criterion(output, target_var)
         acc = accuracy(output.detach(), target.cpu())
 
         # generate predictions
@@ -201,7 +210,7 @@ def validate(val_loader, model, criterion):
 
         # measure accuracy and record loss
         losses.update(loss.data[0], inputs.size(0))
-        acces.update(acc[0], inputs.size(0))
+        acces.update(acc, inputs.size(0))
 
         # measure elapsed time
         batch_time.update(time.time() - end)
