@@ -8,9 +8,6 @@ import torch
 import torch.utils.data as data
 
 from pose.utils.osutils import *
-from pose.utils.imutils import *
-from pose.utils.transforms import *
-
 
 class Rain(data.Dataset):
     def __init__(self, train=True):
